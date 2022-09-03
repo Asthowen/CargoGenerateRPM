@@ -1,0 +1,17 @@
+# action.yml
+name: 'Rust build .rpm with cargo-generate-rpm'
+description: 'This action allows to generate .rpm files with the cargo-generate-rpm tool.'
+author: 'Asthowen<contact@asthowen.fr'
+branding:
+  icon: 'package'
+  color: 'blue'
+inputs:
+  cmd:
+    description: 'build command'
+    required: true
+    default: 'cargo build --release && cargo generate-rpm'
+runs:
+  using: 'docker'
+  image: 'docker://asthowen/cargo-generate-rpm:latest'
+  args:
+    - ${{ inputs.cmd }}
